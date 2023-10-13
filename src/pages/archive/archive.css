@@ -1,0 +1,13 @@
+.sectionHero-Archive{
+    height: 50vw;
+    max-height: 300px;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 10vw;
+    padding-top: 30px;
+}
+.sectionPost-Archive{
+    padding: 20px;
+    background-color: ghostwhite;
+    padding-bottom: 100px;
+}

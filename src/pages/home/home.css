@@ -1,0 +1,15 @@
+.section-welcome{
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+.section-post{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(248, 248, 255, 0.747);
+}

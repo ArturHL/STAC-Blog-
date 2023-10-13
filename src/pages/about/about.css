@@ -1,0 +1,12 @@
+.sectionAbout{
+    background-color: ghostwhite;
+    height: auto;
+    padding: 50px 10px 30px 10px;
+}
+.sectionAbout h4{
+    font-size: 34px;
+}
+.sectionAbout p{
+    font-size: 24px;
+    padding: 20px 0 10px 5px;
+}

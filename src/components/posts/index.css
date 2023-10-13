@@ -1,0 +1,70 @@
+.postItem{
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.247);
+    width: 100%;
+    max-width: 465px;
+    text-align: left;
+    border-radius: 20px;
+    margin: 10px;
+}
+.postItem img{
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    width: 100%;
+    max-height: 200px;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    filter: grayscale(100%);
+    transition: all 200ms;
+}
+/* .postItem img:hover{
+    filter: none;
+    transform: scale(1.03);
+} */
+.description-post{
+    padding: 0 15px 0 15px;
+}
+.description-post p{
+    margin: 5px 0 5px 0;
+}
+.description-post .category-post{
+    color: rgb(190, 190, 190);
+    font-size: 14px;
+}
+.description-post .title-post{
+    font-weight: 700;
+    font-size: 20px;
+}
+.description-post .date-post{
+    font-weight: 100;
+    font-size: 14px;
+    margin: 10px 0 20px 0;
+}
+.link{
+    font-size: 18px;
+    font-weight: 500;
+    margin: 20px 0 20px 0;
+}
+.link:hover{
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Post Archive Style */
+.postItem-archive{
+    width: 100%;
+    height: auto;
+    border-left: 1px solid black;
+    margin: 20px 0 20px 0;
+    padding: 10px;
+    transition: all 400ms;
+}
+.postItem-archive:hover{
+    transform: translateX(10px);
+    cursor: pointer;
+}
+.postItem-archive .date-post-archive{
+    margin-top: 10px;
+    font-size: 14px;
+    color: gray;
+}

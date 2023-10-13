@@ -1,0 +1,38 @@
+.footer{
+    padding: 20px;
+}
+.footer-header{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.footer-header img{
+    width: 50px;
+    height: 50px;
+}
+.footer-description{
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+}
+.footer-more{
+    color: rgb(189, 189, 189);
+    font-weight: 700;
+}
+.footer-more .socialMedia{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px 0 20px 0;
+}
+.socialMedia svg{
+    transition: all 200ms;
+}
+.socialMedia svg:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    color: black;
+}
