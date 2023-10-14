@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react'
 import './index.css'
+import PropTypes from 'prop-types'
 
-function Logo () {
+Logo.propTypes = {
+  setPage: PropTypes.func.isRequired
+}
+
+function Logo ({ setPage }) {
   const content = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
   const [value, setValue] = useState(content)
   function getRandomInt (min, max) {
@@ -20,7 +25,7 @@ function Logo () {
   }, [value])
   return (
     <>
-      <div className='logo'>
+      <div className='logo' onClick={() => { setPage('Home') }}>
         <div className='logo-0'>{value[0]}</div>
         <div className='logo-1'>{value[1]}</div>
         <div className='logo-2'>{value[2]}</div>

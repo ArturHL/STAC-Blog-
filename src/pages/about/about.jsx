@@ -1,8 +1,14 @@
 import './about.css'
 import Navbar from '../../components/nav'
 import Footer from '../../components/footer'
+import PropTypes from 'prop-types'
 
-function AboutPage ({ page, setPage }) {
+AboutPage.propTypes = {
+  page: PropTypes.string.isRequired,
+  setPage: PropTypes.func.isRequired
+}
+
+function AboutPage ({ setPage }) {
   return (
     <>
       <Navbar setPage={setPage} />
@@ -14,7 +20,7 @@ function AboutPage ({ page, setPage }) {
           aprender matematicas y ciencias de la computacion. Quiza no sea el mejor contenido educativo pero a mi me ayudo.
         </p>
       </section>
-      <Footer />
+      <Footer setPage={setPage} />
     </>
   )
 }

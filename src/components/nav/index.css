@@ -1,26 +1,43 @@
 nav{
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 20px;
     align-items: center;
+    background-color: white;
 }
 nav div{
     display: flex;
     align-items: center;
 }
 .menuNav{
+    display: flex;
+    flex-direction: column;
     transition: all 200ms;
     z-index: 20;
 }
+.menuNav svg{
+    transition: all 200ms;
+}
+.menuNav .menuNavItem{
+    height: 10px;
+    transform: scaleX(3) rotate(0deg);
+    stroke-width: 20px;
+}
 .menuNav:hover{
     cursor: pointer;
-    transform: scale(1.07);
+    transform: scale(1.1);
+}
+.rotateItem1{
+    transform: rotate(45deg) translate(10px, 15px)!important;
+}
+.rotateItem3{
+    transform: rotate(-45deg) translate(10px, -15px)!important;
 }
 
 /* DropDown Menu */
 .toggableMenuNav{
-    position: absolute;
-    top: -100%;
+    position: fixed;
+    top: -100vh;
     left: 0;
     background-color: ghostwhite;
     width: 100%;
@@ -45,8 +62,8 @@ nav div{
     color: black;
 }
 .dropDown{
-    transform: translateY(100%);
+    transform: translateY(100vh);
 }
 .dropUp{
-    transform: translateY(-100%);
+    transform: translateY(-100vh);
 }

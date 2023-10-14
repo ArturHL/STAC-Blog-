@@ -3,11 +3,20 @@
 }
 .footer-header{
     display: flex;
+    flex-direction: column;
     gap: 10px;
     align-items: center;
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 10px;
+}
+.footer-header p{
+    width: 100%;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.footer-header .footerAKA{
+    display: flex;
 }
 .footer-header img{
     width: 50px;

@@ -4,9 +4,9 @@ import Post from '../../components/posts'
 import './home.css'
 import PropTypes from 'prop-types'
 
-HomePage.prototype = {
+HomePage.propTypes = {
   page: PropTypes.string.isRequired,
-  setPage: PropTypes.func
+  setPage: PropTypes.func.isRequired
 }
 
 const posts = [
@@ -47,9 +47,9 @@ function HomePage ({ page, setPage }) {
             <Post key={index} page={page} title={item.title} category={item.category} img={item.img} date={item.date} overview={item.overview} />
           )
         })}
-        <p className='link'>No encuentras un Post? Ve al Archivo</p>
       </section>
-      <Footer />
+      <p className='link'>No encuentras un Post? Ve al Archivo</p>
+      <Footer setPage={setPage} />
     </>
   )
 }

@@ -11,5 +11,20 @@
     justify-content: space-around;
     align-items: center;
     padding: 15px;
-    background-color: rgba(248, 248, 255, 0.747);
+    background-color: ghostwhite;
+}
+.link{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 20px 0 20px 0;
+    background-color: ghostwhite;
+    color: rgb(139, 139, 139);
+    transition: all 200ms;
+    max-height: 60px;
+}
+.link:hover{
+    color: black;
+    cursor: pointer;
+    font-size: 18px;
 }

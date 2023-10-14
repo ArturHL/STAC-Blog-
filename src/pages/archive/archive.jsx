@@ -2,6 +2,12 @@ import Footer from '../../components/footer'
 import Navbar from '../../components/nav'
 import Post from '../../components/posts'
 import './archive.css'
+import PropTypes from 'prop-types'
+
+ArchivePage.propTypes = {
+  page: PropTypes.string.isRequired,
+  setPage: PropTypes.func.isRequired
+}
 
 function ArchivePage ({ page, setPage }) {
   const posts = [
@@ -38,7 +44,7 @@ function ArchivePage ({ page, setPage }) {
           )
         })}
       </section>
-      <Footer />
+      <Footer setPage={setPage} />
     </>
   )
 }

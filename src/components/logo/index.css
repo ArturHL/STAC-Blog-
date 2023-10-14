@@ -3,6 +3,9 @@
     grid-template-columns: repeat(4, 1fr);
     font-size: max(18px, 18px );
 }
+.logo:hover{
+    cursor: pointer;
+}
 .logo div{
     width: 10px;
     height: 10px;

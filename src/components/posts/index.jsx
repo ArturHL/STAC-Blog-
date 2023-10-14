@@ -1,7 +1,7 @@
 import './index.css'
 import PropTypes from 'prop-types'
 
-Post.proptype = {
+Post.propTypes = {
   page: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -17,8 +17,10 @@ function Post ({ page, category, title, date, img, overview }) {
         <div className='postItem'>
           <img src={img} alt='' />
           <div className='description-post'>
-            <p className='category-post'>{category}</p>
-            <h4 className='title-post'>{title}</h4>
+            <div className='containerAnimated'>
+              <p className='category-post'>{category}</p>
+              <h4 className='title-post'>{title}</h4>
+            </div>
             <p className='date-post'>{date}</p>
           </div>
         </div>

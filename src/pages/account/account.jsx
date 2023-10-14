@@ -1,8 +1,13 @@
 import './account.css'
 import Navbar from '../../components/nav'
 import Footer from '../../components/footer'
+import PropTypes from 'prop-types'
 
-function AccountPage ({ page, setPage }) {
+AccountPage.propTypes = {
+  setPage: PropTypes.func.isRequired
+}
+
+function AccountPage ({ setPage }) {
   return (
     <>
       <Navbar setPage={setPage} />
@@ -18,7 +23,7 @@ function AccountPage ({ page, setPage }) {
         <p>Mis Likes</p>
         <p>Mis Comentarios</p>
       </div>
-      <Footer />
+      <Footer setPage={setPage} />
     </>
 
   )

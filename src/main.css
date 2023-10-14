@@ -8,6 +8,10 @@ svg{
     height: 35px;
     width: 35px;
 }
+/* img {
+    overflow-clip-margin: content-box !important;
+    overflow: clip !important;
+} */
 .inactive{
     display: none;
 }
