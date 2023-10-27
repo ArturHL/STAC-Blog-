@@ -7,14 +7,15 @@ Post.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired
+  overview: PropTypes.string.isRequired,
+  setPage: PropTypes.func.isRequired
 }
 
-function Post ({ page, category, title, date, img, overview }) {
+function Post ({ page, category, title, date, img, overview, setPage }) {
   function postType (page, category, title, date, img, overview) {
     if (page === 'Home') {
       return (
-        <div className='postItem'>
+        <div className='postItem' onClick={() => { setPage('Post') }}>
           <img src={img} alt='' />
           <div className='description-post'>
             <div className='containerAnimated'>

@@ -3,6 +3,7 @@ import HomePage from './pages/home/home'
 import ArchivePage from './pages/archive/archive'
 import AboutPage from './pages/about/about'
 import AccountPage from './pages/account/account'
+import PostPage from './pages/post/post'
 
 function App () {
   const [page, setPage] = useState('Home')
@@ -25,6 +26,11 @@ function App () {
     if (page === 'Account') {
       return (
         <AccountPage page={page} setPage={setPage} />
+      )
+    }
+    if (page === 'Post') {
+      return (
+        <PostPage page={page} setPage={setPage} />
       )
     }
   }

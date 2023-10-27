@@ -1,0 +1,158 @@
+.post-container {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin: 20px;
+}
+
+.post-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+.post-info {
+  color: #666;
+}
+
+.post-image {
+  height: auto;
+}
+
+.post-content {
+  margin-top: 20px;
+}
+
+.post-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.share-buttons {
+  display: flex;
+}
+
+.share-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.comments-section {
+  margin-top: 20px;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comment-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+.post-footer {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-actions { 
+  display: flex;
+  gap: 10px;
+}
+
+.action-button {
+  background-color: #fff;
+  color: #000;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border: none;
+  transition: all 200ms;
+}
+
+.action-button:hover{
+  transform: scale(1.2);
+}
+
+.post-footer {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Estilos para hacerlo responsive */
+@media screen and (max-width: 463px) {
+  .post-actions {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+.image-gallery {
+  text-align: center;
+  max-height: 500px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden; /* Para recortar las imágenes que excedan el límite de altura */
+}
+
+.gallery-preview {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.preview-image {
+  cursor: pointer;
+  opacity: 0.7; /* Establece la opacidad predeterminada a 0.7 */
+  transition: opacity 0.3s; /* Añade una transición de opacidad */
+}
+
+.preview-image:hover {
+  opacity: 1;
+}
+
+.current-image {
+  flex: 3;
+  max-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1; /* Asegura que la imagen actual siempre esté visible */
+  transition: opacity 0.3s; /* Añade una transición de opacidad */
+}
+
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.control-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #000;
+}
