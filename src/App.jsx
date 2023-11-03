@@ -4,6 +4,9 @@ import ArchivePage from './pages/archive/archive'
 import AboutPage from './pages/about/about'
 import AccountPage from './pages/account/account'
 import PostPage from './pages/post/post'
+import IntroOverlay from './components/intro/index'
+
+window.localStorage.setItem('userID', 0)
 
 function App () {
   const [page, setPage] = useState('Home')
@@ -37,6 +40,7 @@ function App () {
   return (
     <>
       {validatePage(page, setPage)}
+      <IntroOverlay />
     </>
   )
 }

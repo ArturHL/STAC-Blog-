@@ -16,7 +16,6 @@ function Navbar ({ setPage }) {
       menu.classList.remove('dropUp')
       menu.classList.toggle('inactive')
       setIsDrop(true)
-      console.log(isDrop)
       setTimeout(() => { menu.classList.toggle('dropDown') }, 1)
     } else {
       setTimeout(() => { menu.classList.toggle('dropDown'); menu.classList.toggle('dropUp') }, 1)
@@ -24,7 +23,6 @@ function Navbar ({ setPage }) {
         menu.classList.toggle('inactive')
       }, 610)
       setIsDrop(false)
-      console.log(isDrop)
     }
   }
   useEffect(() => {

@@ -1,0 +1,48 @@
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    flex-direction: column;
+  }
+  
+  .intro-overlay.active {
+    opacity: 1;
+  }
+  
+  .text-container {
+    font-size: 10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(100%) rotate(10deg);
+    opacity: 0;
+    animation: fadeInAndRotate 2.0s ease-in-out 0.3s forwards;
+  }
+  
+  .text-part1,
+  .text-part2 {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  @keyframes fadeInAndRotate {
+    0% {
+      transform: translateY(100%) rotate(10deg);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+  }
+  
