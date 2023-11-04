@@ -1,6 +1,3 @@
-import userValidator from "./utils"
-const storage = window.localStorage
-
 const endpoint = 'http://localhost:3000/'
 
 async function fetching (endpoint) {
@@ -41,6 +38,10 @@ async function searchUser (userEmail) {
   const response = await fetching(`${endpoint}users/email/${userEmail}`)
   return response
 }
+async function createAccount (data) {
+  const response = await postFetching(`${endpoint}users`, data)
+  return response
+}
 async function searchPost (postId) {
   const response = await fetching(`${endpoint}posts/${postId}`)
   return response
@@ -69,4 +70,4 @@ async function isLiked (userId, postId) {
   return response
 }
 
-export { fetching, allPosts, searchUser, searchPost, postCommentOnDB, searchComments, likeOnDB, isLiked }
+export { fetching, allPosts, searchUser, searchPost, postCommentOnDB, searchComments, likeOnDB, isLiked, createAccount }

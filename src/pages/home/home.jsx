@@ -27,7 +27,7 @@ function HomePage ({ page, setPage }) {
           )
         })}
       </section>
-      <p className='link'>No encuentras un Post? Ve al Archivo</p>
+      <p className='link' onClick={() => { setPage('Archive') }}>No encuentras un Post? Ve al Archivo</p>
       <Footer setPage={setPage} />
     </>
   )

@@ -2,7 +2,7 @@ import './account.css'
 import Navbar from '../../components/nav'
 import Footer from '../../components/footer'
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FaAngleLeft, FaBookmark } from 'react-icons/fa6'
 import { FcGoogle } from 'react-icons/fc'
 import { AiFillHeart, AiOutlineClose } from 'react-icons/ai'
@@ -11,6 +11,8 @@ import { FiMoreVertical } from 'react-icons/fi'
 import Logo from '../../components/logo'
 import Post from '../../components/posts'
 import { allPosts, searchUser } from '../../fetching'
+import SignUp from '../../components/signUp'
+import { emptyValidator } from '../../utils'
 
 AccountPage.propTypes = {
   setPage: PropTypes.func.isRequired
@@ -18,21 +20,46 @@ AccountPage.propTypes = {
 
 const posts = await allPosts()
 const storage = window.localStorage
+const session = window.sessionStorage
 
 function AccountPage ({ setPage }) {
   const [pageProfile, setPageProfile] = useState(false)
-  async function profileOk () {
-    const email = document.querySelector('.email').value.toString()
-    const password = document.querySelector('.password').value.toString()
-    const userProfile = await searchUser(email)
-    if (userProfile) {
-      if (userProfile.password === password) {
-        storage.setItem('userID', userProfile.id)
-        storage.setItem('user@', userProfile.username)
-        setPageProfile(true)
+  function pageState (storage) {
+    storage.getItem('userLogged') === '1' ? setPageProfile(true) : setPageProfile(false)
+  }
+  async function profileOk (Email, Password) {
+    const email = Email
+    const password = Password
+    const emailIsNull = emptyValidator('email')
+    const passwordIsNull = emptyValidator('password')
+    if (emailIsNull & passwordIsNull) {
+      const userProfile = await searchUser(email)
+      const storageType = document.querySelector('.checkbox').checked
+      if (userProfile) {
+        if (userProfile.password === password) {
+          if (storageType) {
+            storage.setItem('userID', userProfile.id)
+            storage.setItem('user@', userProfile.username)
+            storage.setItem('userLogged', '1')
+            storage.setItem('storageType', 'local')
+            pageState(storage)
+          } else {
+            session.setItem('userID', userProfile.id)
+            session.setItem('user@', userProfile.username)
+            session.setItem('userLogged', '1')
+            storage.setItem('storageType', 'session')
+            session.setItem('storageType', 'session')
+            pageState(session)
+          }
+          setPageProfile(true)
+        } else {
+          window.alert('Contraseña incorrecta')
+        }
+      } else {
+        window.alert('El usuario no existe')
       }
     } else {
-      console.log('User Not Found')
+      window.alert('Rellena todos los campos')
     }
   }
   function dropMenu () {
@@ -49,7 +76,17 @@ function AccountPage ({ setPage }) {
       }, 310)
     }
   }
+  function closeSession () {
+    storage.clear()
+    session.clear()
+    window.location.reload()
+  }
+  function showSignUp () {
+    const signUp = document.querySelector('.containerSignUp')
+    signUp.classList.remove('inactive')
+  }
   function isConnected () {
+    const storageSet = storage.getItem('storageType') === 'local' ? storage : session
     if (pageProfile) {
       const page = 'Home'
       return (
@@ -58,13 +95,13 @@ function AccountPage ({ setPage }) {
           <div className='moreMenuProfile inactive'>
             <AiOutlineClose className='closeMenuProfile' onClick={dropMenu} />
             <p>Editar Perfil</p>
-            <p>Cerrar Sesion</p>
+            <p onClick={closeSession}>Cerrar Sesion</p>
           </div>
           <div className='profileContainer'>
             <div className='profileCard'>
               <img src='https://images.pexels.com/photos/428361/pexels-photo-428361.jpeg?auto=compress&cs=tinysrgb&w=600' alt='profile img' className='profileImg' />
               <div>
-                <p className='userProfile'>@{storage.getItem('user@')}</p>
+                <p className='userProfile'>@{storageSet.getItem('user@')}</p>
                 <p className='passwordProfile'>*********</p>
               </div>
               <FiMoreVertical onClick={dropMenu} />
@@ -91,39 +128,45 @@ function AccountPage ({ setPage }) {
       )
     } else {
       return (
-        <div className='logIn-container'>
-          <Logo setPage={setPage} />
-          <div className='loginTitle'>
-            <button className='buttonHover' onClick={() => { setPage('Home') }}><FaAngleLeft /></button>
-            <p>Log In</p>
-          </div>
-          <div className='google'>
-            <FcGoogle />
-            <p>Sign in with Google</p>
-          </div>
-          <div>
-            OR USE EMAIL
-          </div>
-          <form action='' className='loginForm'>
-            <input type='text' placeholder='example@email.com' className='principalInput email' />
-            <input type='text' placeholder='Password' className='principalInput password' />
-            <div className='extrasLogin'>
-              <div>
-                <input type='checkbox' className='checkbox' />
-                <p>Remember me</p>
-              </div>
-              <p className='forgotPassword'>Forgot password?</p>
+        <>
+          <div className='logIn-container'>
+            <Logo setPage={setPage} />
+            <div className='loginTitle'>
+              <button className='buttonHover' onClick={() => { setPage('Home') }}><FaAngleLeft /></button>
+              <p>Log In</p>
             </div>
-            <button type='button' className='buttonLogin buttonHover' onClick={profileOk}>Log In</button>
-          </form>
-          <div className='footerLogin'>
-            Don&apos;t have an account? <button>Sign Up</button>
+            <div className='google'>
+              <FcGoogle />
+              <p>Sign in with Google</p>
+            </div>
+            <div>
+              OR USE EMAIL
+            </div>
+            <form action='' className='loginForm'>
+              <input type='text' placeholder='example@email.com' className='principalInput email' />
+              <input type='text' placeholder='Password' className='principalInput password' />
+              <div className='extrasLogin'>
+                <div>
+                  <input type='checkbox' className='checkbox' />
+                  <p>Remember me</p>
+                </div>
+                <p className='forgotPassword'>Forgot password?</p>
+              </div>
+              <button type='button' className='buttonLogin buttonHover' onClick={() => { profileOk(document.querySelector('.email').value.toString(), document.querySelector('.password').value.toString()) }}>Log In</button>
+            </form>
+            <div className='footerLogin'>
+              Don&apos;t have an account? <button onClick={showSignUp}>Sign Up</button>
+            </div>
           </div>
-        </div>
+          <SignUp setPage={setPage} profileOk={profileOk} />
+        </>
       )
     }
   }
-  useEffect(() => { storage.getItem('userID') ? setPageProfile(true) : setPageProfile(false) }, [pageProfile])
+  useState(() => {
+    const storageSet = storage.getItem('storageType')
+    storageSet === 'local' ? pageState(storage) : pageState(session)
+  }, [])
   return (
     <>
       {isConnected()}

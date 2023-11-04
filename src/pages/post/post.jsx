@@ -6,6 +6,7 @@ import './post.css'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { postCommentOnDB, likeOnDB } from '../../fetching'
+import { userValidator } from '../../utils'
 
 PostPage.propTypes = {
   setPage: PropTypes.func.isRequired
@@ -17,26 +18,42 @@ function PostPage ({ setPage }) {
   const [isLiked, setIsLiked] = useState(storage.getItem('liked') === 'true')
   const [isSaved, setIsSaved] = useState(false)
   function likePost () {
-    const userId = storage.getItem('userID')
-    const postId = storage.getItem('postID')
-    setIsLiked(!isLiked)
-    likeOnDB({ userId, postId, isLiked })
+    const validation = userValidator(storage)
+    if (validation) {
+      const userId = storage.getItem('userID')
+      const postId = storage.getItem('postID')
+      setIsLiked(!isLiked)
+      likeOnDB({ userId, postId, isLiked })
+    } else {
+      window.alert('Debes iniciar sesion para poder dar like')
+    }
   }
   function savePost () {
-    console.log('Save post')
-    setIsSaved(!isSaved)
+    const validation = userValidator(storage)
+    if (validation) {
+      console.log('Save post')
+      setIsSaved(!isSaved)
+    } else {
+      window.alert('Debes iniciar sesion para poder guardar tus post favoritos')
+    }
   }
   function updatePage () {
     document.querySelector('.comment-input').value = ''
     // newComments()
   }
   function postComment () {
-    const content = document.querySelector('.comment-input').value
-    const userId = storage.getItem('userID')
-    const postId = storage.getItem('postID')
-    postCommentOnDB({ userId, postId, content })
-    updatePage()
+    const validation = userValidator(storage)
+    if (validation) {
+      const content = document.querySelector('.comment-input').value
+      const userId = storage.getItem('userID')
+      const postId = storage.getItem('postID')
+      postCommentOnDB({ userId, postId, content })
+      updatePage()
+    } else {
+      window.alert('Debes iniciar sesion para poder comentar')
+    }
   }
+
   return (
     <>
       <Navbar setPage={setPage} />

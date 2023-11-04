@@ -6,7 +6,12 @@ import AccountPage from './pages/account/account'
 import PostPage from './pages/post/post'
 import IntroOverlay from './components/intro/index'
 
-window.localStorage.setItem('userID', 0)
+const userLogged = window.localStorage.getItem('userLogged')
+
+if (userLogged === null) {
+  window.localStorage.setItem('userLogged', 0)
+  window.localStorage.setItem('storageType', 'local')
+}
 
 function App () {
   const [page, setPage] = useState('Home')

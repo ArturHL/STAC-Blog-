@@ -13,14 +13,13 @@ Post.propTypes = {
   id: PropTypes.number.isRequired
 }
 
-const storage = window.localStorage
-
 async function postUp (ID) {
+  const storage = window.localStorage.getItem('storageType') === 'local' ? window.localStorage : window.sessionStorage
   storage.removeItem('comments')
   storage.removeItem('liked')
   const postRequired = await searchPost(ID)
   const comments = await searchComments(ID)
-  const liked = await isLiked(storage.getItem('userID'), ID)
+  const liked = await isLiked(window.localStorage.getItem('storageType') === 'local' ? 0 : storage.getItem('userID'), ID)
   storage.setItem('liked', liked)
   storage.setItem('comments', JSON.stringify(comments))
   storage.setItem('postID', ID)
