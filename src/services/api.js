@@ -1,4 +1,4 @@
-const endpoint = 'http://localhost:3000/'
+const endpoint = 'http://localhost:3100/'
 
 async function fetching (endpoint) {
   let response = []

@@ -1,6 +1,5 @@
 import './index.css'
 import PropTypes from 'prop-types'
-import { isLiked, searchComments, searchPost } from '../../fetching'
 
 Post.propTypes = {
   page: PropTypes.string.isRequired,
@@ -15,19 +14,7 @@ Post.propTypes = {
 
 async function postUp (ID) {
   const storage = window.localStorage.getItem('storageType') === 'local' ? window.localStorage : window.sessionStorage
-  storage.removeItem('comments')
-  storage.removeItem('liked')
-  const postRequired = await searchPost(ID)
-  const comments = await searchComments(ID)
-  const liked = await isLiked(window.localStorage.getItem('storageType') === 'local' ? 0 : storage.getItem('userID'), ID)
-  storage.setItem('liked', liked)
-  storage.setItem('comments', JSON.stringify(comments))
   storage.setItem('postID', ID)
-  storage.setItem('postTitle', postRequired.title)
-  storage.setItem('postContent', postRequired.content)
-  storage.setItem('postCategory', postRequired.category)
-  storage.setItem('postUrl', postRequired.url)
-  storage.setItem('postDate', postRequired.date.slice(0, -14))
 }
 function Post ({ id, page, category, title, date, img, overview, setPage }) {
   function postType (id, page, category, title, date, img, overview, setPage) {

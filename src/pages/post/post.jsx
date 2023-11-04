@@ -5,8 +5,9 @@ import { FaRegBookmark, FaBookmark, FaRegHeart } from 'react-icons/fa6'
 import './post.css'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { postCommentOnDB, likeOnDB } from '../../fetching'
-import { userValidator } from '../../utils'
+import { postCommentOnDB, likeOnDB } from '../../services/api'
+import { userValidator } from '../../services/utils'
+import { usePostContent } from '../../services/customHooks'
 
 PostPage.propTypes = {
   setPage: PropTypes.func.isRequired
@@ -15,7 +16,9 @@ PostPage.propTypes = {
 const storage = window.localStorage
 
 function PostPage ({ setPage }) {
-  const [isLiked, setIsLiked] = useState(storage.getItem('liked') === 'true')
+  const { postRequired, comments, liked } = usePostContent(storage.getItem('postID'))
+  console.log({ postRequired, comments, liked })
+  const [isLiked, setIsLiked] = useState(liked === 'true')
   const [isSaved, setIsSaved] = useState(false)
   function likePost () {
     const validation = userValidator(storage)
@@ -53,19 +56,18 @@ function PostPage ({ setPage }) {
       window.alert('Debes iniciar sesion para poder comentar')
     }
   }
-
   return (
     <>
       <Navbar setPage={setPage} />
       <div className='post-container'>
-        <h1 className='post-title'>{storage.getItem('postTitle')}</h1>
+        <h1 className='post-title'>{postRequired.title}</h1>
         <div className='post-info'>
-          <span className='post-date'>{storage.getItem('postDate')}</span>
+          <span className='post-date'>{postRequired.date.slice(0, -14)}</span>
           <span className='post-author'> Arturo Hernandez</span>
         </div>
         <div className='post-content'>
-          <img className='post-image' src={storage.getItem('postUrl')} alt='Imagen Destacada' />
-          <p>{storage.getItem('postContent')}</p>
+          <img className='post-image' src={postRequired.url} alt='Imagen Destacada' />
+          <p>{postRequired.content}</p>
         </div>
         <div className='post-footer'>
           <div className='post-actions'>
@@ -85,7 +87,7 @@ function PostPage ({ setPage }) {
             <input type='text' className='comment-input' placeholder='Escribe un comentario...' />
             <button type='button' className='comment-send' onClick={postComment}>Enviar</button>
             <ul className='comments-list'>
-              {JSON.parse(storage.getItem('comments')).map((comment) => (
+              {comments.map((comment) => (
                 <li key={comment.id} className='comment-item'>
                   <strong>{comment.userId}:</strong> {comment.content}
                 </li>

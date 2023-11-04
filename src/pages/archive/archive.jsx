@@ -3,7 +3,7 @@ import Navbar from '../../components/nav'
 import Post from '../../components/posts'
 import './archive.css'
 import PropTypes from 'prop-types'
-import { allPosts } from '../../fetching'
+import { allPosts } from '../../services/api'
 
 ArchivePage.propTypes = {
   page: PropTypes.string.isRequired,

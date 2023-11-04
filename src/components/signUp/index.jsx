@@ -2,7 +2,7 @@ import Logo from '../../components/logo'
 import PropTypes from 'prop-types'
 import { FaAngleLeft } from 'react-icons/fa6'
 import { FcGoogle } from 'react-icons/fc'
-import { createAccount } from '../../fetching'
+import { createAccount } from '../../services/api'
 import './index.css'
 
 SignUp.propTypes = {

@@ -10,9 +10,9 @@ import { TbCategoryFilled } from 'react-icons/tb'
 import { FiMoreVertical } from 'react-icons/fi'
 import Logo from '../../components/logo'
 import Post from '../../components/posts'
-import { allPosts, searchUser } from '../../fetching'
+import { allPosts, searchUser } from '../../services/api'
 import SignUp from '../../components/signUp'
-import { emptyValidator } from '../../utils'
+import { emptyValidator } from '../../services/utils'
 
 AccountPage.propTypes = {
   setPage: PropTypes.func.isRequired

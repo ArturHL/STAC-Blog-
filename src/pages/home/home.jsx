@@ -3,7 +3,7 @@ import Navbar from '../../components/nav/index'
 import Post from '../../components/posts'
 import './home.css'
 import PropTypes from 'prop-types'
-import { allPosts } from '../../fetching'
+import { allPosts } from '../../services/api'
 
 HomePage.propTypes = {
   page: PropTypes.string.isRequired,
